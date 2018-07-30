@@ -1,0 +1,30 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>net451;netstandard1.3</TargetFrameworks>
+    <!--<TargetFramework>netstandard1.3</TargetFramework>-->  <!-- for development at linux platform -->
+    <Version>1.0.23</Version>
+    <Authors>onuryasar.org</Authors>
+    <Company>onuryasar.org</Company>
+    <Product>OYASAR.Framework.Core</Product>
+    <Description>OYASAR.Framework.Core</Description>
+    <Copyright>onuryasar.org</Copyright>
+    <PackageIconUrl>http://onuryasar.org/logo.png</PackageIconUrl>
+  </PropertyGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)' == 'netstandard1.3'">
+    <PackageReference Include="Microsoft.AspNetCore.Http" Version="1.0.0" />
+    <PackageReference Include="System.Threading.Tasks">
+      <Version>4.3.0</Version>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)' == 'net451'">
+    <PackageReference Include="System.Threading.Tasks">
+      <Version>4.3.0</Version>
+    </PackageReference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Configuration" />
+  </ItemGroup>
+
+</Project>

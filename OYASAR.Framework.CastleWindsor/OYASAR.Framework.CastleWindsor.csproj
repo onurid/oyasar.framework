@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net35</TargetFramework>
+    <Version>1.0.3</Version>
+    <Description>OYASAR.Framework.CastleWindsor</Description>
+    <Authors>onuryasar.org</Authors>
+    <Company>onuryasar.org</Company>
+    <Product>OYASAR.Framework.CastleWindsor</Product>
+    <Copyright>onuryasar.org</Copyright>
+    <PackageIconUrl>http://onuryasar.org/logo.png</PackageIconUrl>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Castle.Windsor" Version="3.4.0" />
+    <PackageReference Include="OYASAR.Framework.Core" Version="1.0.6" />
+  </ItemGroup>
+
+</Project>
