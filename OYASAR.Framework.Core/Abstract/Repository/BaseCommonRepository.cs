@@ -11,7 +11,7 @@ using OYASAR.Framework.Core.CustomType;
 
 namespace OYASAR.Framework.Core.Abstract
 {
-    public abstract class BaseCommonRepository<TRepositoryProvider> where TRepositoryProvider : class, IRepository
+    public abstract class BaseCommonRepository<TRepositoryProvider, ModelKey> where TRepositoryProvider : class, IRepository where ModelKey : class
     {
         private readonly TRepositoryProvider _repository;
 
@@ -21,7 +21,7 @@ namespace OYASAR.Framework.Core.Abstract
         }
 
         internal virtual Queryable<TRepositoryProvider, TBusinessObject> GetAllQ<TDataObject, TBusinessObject>(Expression<Func<TDataObject, bool>> expr)
-            where TDataObject : class where TBusinessObject : class
+            where TDataObject : class, ModelKey where TBusinessObject : class
         {
             var data = _repository.GetAll(expr);
 
@@ -30,7 +30,7 @@ namespace OYASAR.Framework.Core.Abstract
             return result.ToQueryable(_repository);
         }
 
-        internal virtual Queryable<TRepositoryProvider, TBusinessObject> GetAllQ<TDataObject, TBusinessObject>() where TDataObject : class where TBusinessObject : class
+        internal virtual Queryable<TRepositoryProvider, TBusinessObject> GetAllQ<TDataObject, TBusinessObject>() where TDataObject : class, ModelKey where TBusinessObject : class
         {
             var data = _repository.GetAll<TDataObject>();
 
@@ -40,18 +40,18 @@ namespace OYASAR.Framework.Core.Abstract
         }
 
         internal virtual Queryable<TRepositoryProvider, TPoco> GetAllQ<TPoco>(Expression<Func<TPoco, bool>> expr)
-            where TPoco : class
+            where TPoco : class, ModelKey
         {
             return _repository.GetAll(expr).ToQueryable(_repository);
         }
 
-        internal virtual Queryable<TRepositoryProvider, TPoco> GetAllQ<TPoco>() where TPoco : class
+        internal virtual Queryable<TRepositoryProvider, TPoco> GetAllQ<TPoco>() where TPoco : class, ModelKey
         {
             return _repository.GetAll<TPoco>().ToQueryable(_repository);
         }
 
         internal virtual IQueryable<TBusinessObject> GetAll<TDataObject, TBusinessObject>(Expression<Func<TDataObject, bool>> expr)
-            where TDataObject : class where TBusinessObject : class
+            where TDataObject : class, ModelKey where TBusinessObject : class
         {
             var data = _repository.GetAll(expr);
 
@@ -60,7 +60,7 @@ namespace OYASAR.Framework.Core.Abstract
             return result;
         }
 
-        internal virtual IQueryable<TBusinessObject> GetAll<TDataObject, TBusinessObject>() where TDataObject : class where TBusinessObject : class
+        internal virtual IQueryable<TBusinessObject> GetAll<TDataObject, TBusinessObject>() where TDataObject : class, ModelKey where TBusinessObject : class
         {
             var data = _repository.GetAll<TDataObject>();
 
@@ -70,17 +70,17 @@ namespace OYASAR.Framework.Core.Abstract
         }
 
         internal virtual IQueryable<TPoco> GetAll<TPoco>(Expression<Func<TPoco, bool>> expr)
-            where TPoco : class
+            where TPoco : class, ModelKey
         {
             return _repository.GetAll(expr);
         }
 
-        internal virtual IQueryable<TPoco> GetAll<TPoco>() where TPoco : class
+        internal virtual IQueryable<TPoco> GetAll<TPoco>() where TPoco : class, ModelKey
         {
             return _repository.GetAll<TPoco>();
         }
 
-        internal virtual TBusinessObject GetByKey<TDataObject, TBusinessObject>(object key) where TDataObject : class where TBusinessObject : class
+        internal virtual TBusinessObject GetByKey<TDataObject, TBusinessObject>(object key) where TDataObject : class, ModelKey where TBusinessObject : class
         {
             var data = _repository.GetByKey<TDataObject>(key);
 
@@ -89,45 +89,45 @@ namespace OYASAR.Framework.Core.Abstract
             return result;
         }
 
-        internal virtual TPoco GetByKey<TPoco>(object key) where TPoco : class
+        internal virtual TPoco GetByKey<TPoco>(object key) where TPoco : class, ModelKey
         {
             return _repository.GetByKey<TPoco>(key);
         }
 
-        internal virtual void LazyLoad<TEntity, TK>(TEntity entity, Expression<Func<TEntity, ICollection<TK>>> expr) where TEntity : class where TK : class
+        internal virtual void LazyLoad<TEntity, TK>(TEntity entity, Expression<Func<TEntity, ICollection<TK>>> expr) where TEntity : class, ModelKey where TK : class
         {
             _repository.LazyLoad(entity, expr);
         }
 
         internal virtual void LazyLoad<TEntity, TK>(TEntity entity)
-            where TEntity : class
+            where TEntity : class, ModelKey
             where TK : class
         {
             _repository.LazyLoad<TEntity, TK>(entity);
         }
 
-        internal virtual void Add<TDataObject, TId>(TDataObject dataObject) where TDataObject : class
+        internal virtual void Add<TDataObject, TId>(TDataObject dataObject) where TDataObject : class, ModelKey
         {
             var baseAuditHelper = new BaseAuditHelper<TDataObject, TId>(dataObject, BaseAuditHelper<TDataObject, TId>.BaseAuditType.Create, true);
 
             _repository.Add(dataObject);
         }
 
-        internal virtual void Edit<TDataObject, TId>(TDataObject dataObject) where TDataObject : class
+        internal virtual void Edit<TDataObject, TId>(TDataObject dataObject) where TDataObject : class, ModelKey
         {
             var baseAuditHelper = new BaseAuditHelper<TDataObject, TId>(dataObject, BaseAuditHelper<TDataObject, TId>.BaseAuditType.Modify);
 
             _repository.Edit(dataObject);
         }
 
-        internal virtual void Delete<TDataObject, TId>(TDataObject dataObject) where TDataObject : class
+        internal virtual void Delete<TDataObject, TId>(TDataObject dataObject) where TDataObject : class, ModelKey
         {
             var baseAuditHelper = new BaseAuditHelper<TDataObject, TId>(dataObject, BaseAuditHelper<TDataObject, TId>.BaseAuditType.Delete);
 
             _repository.Edit(dataObject);
         }
 
-        internal virtual void RowDelete<TDataObject>(object key) where TDataObject : class
+        internal virtual void RowDelete<TDataObject>(object key) where TDataObject : class, ModelKey
         {
             _repository.DeleteByKey<TDataObject>(key);
         }
@@ -137,13 +137,13 @@ namespace OYASAR.Framework.Core.Abstract
             _repository.Save();
         }
 
-        internal virtual IQueryable<TEntity> SqlQuery<TEntity>(string str, params object[] obj) where TEntity : class
+        internal virtual IQueryable<TEntity> SqlQuery<TEntity>(string str, params object[] obj) where TEntity : class, ModelKey
         {
             return _repository.SqlQuery<TEntity>(str, obj);
         }
 
         internal virtual async Task<IList<TBusinessObject>> GetAllAsync<TDataObject, TBusinessObject>(Expression<Func<TDataObject, bool>> expr)
-            where TDataObject : class where TBusinessObject : class
+            where TDataObject : class, ModelKey where TBusinessObject : class
         {
             var data = await _repository.GetAllAsync(expr);
 
@@ -152,7 +152,7 @@ namespace OYASAR.Framework.Core.Abstract
             return result;
         }
 
-        internal virtual async Task<IList<TBusinessObject>> GetAllAsync<TDataObject, TBusinessObject>() where TDataObject : class where TBusinessObject : class
+        internal virtual async Task<IList<TBusinessObject>> GetAllAsync<TDataObject, TBusinessObject>() where TDataObject : class, ModelKey where TBusinessObject : class
         {
             var data = await _repository.GetAllAsync<TDataObject>();
 
@@ -162,17 +162,17 @@ namespace OYASAR.Framework.Core.Abstract
         }
 
         internal virtual async Task<IList<TPoco>> GetAllAsync<TPoco>(Expression<Func<TPoco, bool>> expr)
-            where TPoco : class
+            where TPoco : class, ModelKey
         {
             return await _repository.GetAllAsync(expr);
         }
 
-        internal virtual async Task<IList<TPoco>> GetAllAsync<TPoco>() where TPoco : class
+        internal virtual async Task<IList<TPoco>> GetAllAsync<TPoco>() where TPoco : class, ModelKey
         {
             return await _repository.GetAllAsync<TPoco>();
         }
 
-        internal virtual async Task<TBusinessObject> GetByKeyAsync<TDataObject, TBusinessObject>(object key) where TDataObject : class where TBusinessObject : class
+        internal virtual async Task<TBusinessObject> GetByKeyAsync<TDataObject, TBusinessObject>(object key) where TDataObject : class, ModelKey where TBusinessObject : class
         {
             var data = await _repository.GetByKeyAsync<TDataObject>(key);
 
@@ -181,18 +181,18 @@ namespace OYASAR.Framework.Core.Abstract
             return result;
         }
 
-        internal virtual async Task<TPoco> GetByKeyAsync<TPoco>(object key) where TPoco : class
+        internal virtual async Task<TPoco> GetByKeyAsync<TPoco>(object key) where TPoco : class, ModelKey
         {
             return await _repository.GetByKeyAsync<TPoco>(key);
         }
 
-        internal virtual async Task LazyLoadAsync<TEntity, TK>(TEntity entity, Expression<Func<TEntity, ICollection<TK>>> expr) where TEntity : class where TK : class
+        internal virtual async Task LazyLoadAsync<TEntity, TK>(TEntity entity, Expression<Func<TEntity, ICollection<TK>>> expr) where TEntity : class, ModelKey where TK : class
         {
             await _repository.LazyLoadAsync(entity, expr);
         }
 
         internal virtual async Task LazyLoadAsync<TEntity, TK>(TEntity entity)
-            where TEntity : class
+            where TEntity : class, ModelKey
             where TK : class
         {
             await _repository.LazyLoadAsync<TEntity, TK>(entity);
@@ -203,22 +203,22 @@ namespace OYASAR.Framework.Core.Abstract
             await _repository.SaveAsync();
         }
 
-        internal virtual async Task<IList<TEntity>> SqlQueryAsync<TEntity>(string str, params object[] obj) where TEntity : class
+        internal virtual async Task<IList<TEntity>> SqlQueryAsync<TEntity>(string str, params object[] obj) where TEntity : class, ModelKey
         {
             return await _repository.SqlQueryAsync<TEntity>(str, obj);
         }
 
-        internal virtual async Task<IList<TEntity>> GetListAsync<TEntity>(IQueryable<TEntity> queryable) where TEntity : class
+        internal virtual async Task<IList<TEntity>> GetListAsync<TEntity>(IQueryable<TEntity> queryable) where TEntity : class, ModelKey
         {
             return await _repository.GetListAsync(queryable);
         }
 
-        internal virtual async Task<TEntity> GetSingleOrDefaultAsync<TEntity>(IQueryable<TEntity> queryable) where TEntity : class
+        internal virtual async Task<TEntity> GetSingleOrDefaultAsync<TEntity>(IQueryable<TEntity> queryable) where TEntity : class, ModelKey
         {
             return await _repository.GetSingleOrDefaultAsync(queryable);
         }
 
-        internal virtual async Task<TEntity> GetFirstOrDefaultAsync<TEntity>(IQueryable<TEntity> queryable) where TEntity : class
+        internal virtual async Task<TEntity> GetFirstOrDefaultAsync<TEntity>(IQueryable<TEntity> queryable) where TEntity : class, ModelKey
         {
             return await _repository.GetFirstOrDefaultAsync(queryable);
         }

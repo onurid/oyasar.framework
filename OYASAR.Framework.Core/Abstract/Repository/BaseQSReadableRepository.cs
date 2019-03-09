@@ -8,8 +8,8 @@ using System.Threading.Tasks;
 
 namespace OYASAR.Framework.Core.Abstract
 {
-    public abstract class BaseQSReadableRepository<TRepositoryProvider, TEntity> : BaseCommonRepository<TRepositoryProvider>, IBaseReadableRepository<TRepositoryProvider, TEntity>
-        where TEntity : class where TRepositoryProvider : class, IRepository
+    public abstract class BaseQSReadableRepository<TRepositoryProvider, TEntity, ModelKey> : BaseCommonRepository<TRepositoryProvider, ModelKey>, IBaseReadableRepository<TRepositoryProvider, TEntity, ModelKey>
+        where TEntity : class, ModelKey where TRepositoryProvider : class, IRepository where ModelKey : class
     {
         public Queryable<TRepositoryProvider, TBusinessObject> GetAllQ<TBusinessObject>(Expression<Func<TEntity, bool>> expr)
            where TBusinessObject : class

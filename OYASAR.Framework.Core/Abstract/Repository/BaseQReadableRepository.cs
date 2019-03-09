@@ -5,26 +5,26 @@ using System.Linq.Expressions;
 
 namespace OYASAR.Framework.Core.Abstract
 {
-    public abstract class BaseQReadableRepository<TRepositoryProvider> : BaseReadableRepository<TRepositoryProvider>, IBaseReadableRepository<TRepositoryProvider> where TRepositoryProvider : class, IRepository
+    public abstract class BaseQReadableRepository<TRepositoryProvider, ModelKey> : BaseReadableRepository<TRepositoryProvider, ModelKey>, IBaseReadableRepository<TRepositoryProvider, ModelKey> where TRepositoryProvider : class, IRepository where ModelKey : class
     {
         public new Queryable<TRepositoryProvider, TBusinessObject> GetAllQ<TDataObject, TBusinessObject>(Expression<Func<TDataObject, bool>> expr)
-            where TDataObject : class where TBusinessObject : class
+            where TDataObject : class, ModelKey where TBusinessObject : class
         {
             return base.GetAllQ<TDataObject, TBusinessObject>(expr);
         }
 
-        public new Queryable<TRepositoryProvider, TBusinessObject> GetAllQ<TDataObject, TBusinessObject>() where TDataObject : class where TBusinessObject : class
+        public new Queryable<TRepositoryProvider, TBusinessObject> GetAllQ<TDataObject, TBusinessObject>() where TDataObject : class, ModelKey where TBusinessObject : class
         {
             return base.GetAllQ<TDataObject, TBusinessObject>();
         }
 
         public new Queryable<TRepositoryProvider, TPoco> GetAllQ<TPoco>(Expression<Func<TPoco, bool>> expr)
-            where TPoco : class
+            where TPoco : class, ModelKey
         {
             return base.GetAllQ(expr);
         }
 
-        public new Queryable<TRepositoryProvider, TPoco> GetAllQ<TPoco>() where TPoco : class
+        public new Queryable<TRepositoryProvider, TPoco> GetAllQ<TPoco>() where TPoco : class, ModelKey
         {
             return base.GetAllQ<TPoco>();
         }
