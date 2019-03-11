@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFrameworks>net451;netstandard1.3</TargetFrameworks>
     <!--<TargetFramework>netstandard1.3</TargetFramework>-->  <!-- for development at linux platform -->
-    <Version>1.0.26</Version>
+    <Version>1.0.27</Version>
     <Authors>onuryasar.org</Authors>
     <Company>onuryasar.org</Company>
     <Product>OYASAR.Framework.Core</Product>
