@@ -8,5 +8,10 @@ namespace OYASAR.Framework.Core.Utils
         {
             return IocManager.Instance.Resolve<T>();
         }
+
+        public static T Call(string impKeyName)
+        {
+            return IocManager.Instance.Resolve<T>(impKeyName);
+        }
     }
 }

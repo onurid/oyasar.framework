@@ -26,6 +26,8 @@ namespace OYASAR.Framework.Core.Manager
         public abstract void RegisterScoped(string impKeyName, Type @interface, Type impType);
 
         public abstract void RegisterTransient(string impKeyName, Type @interface, Type impType, string interceptor);
+        public abstract void RegisterSingleton(string impKeyName, Type @interface, Type impType, string interceptor);
+        public abstract void RegisterScoped(string impKeyName, Type @interface, Type impType, string interceptor);
 
         public abstract object Resolve(object obj);
 
