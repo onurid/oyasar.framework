@@ -85,13 +85,25 @@ namespace OYASAR.Framework.CastleWindsor
 
         public override void RegisterTransient(Type @interface, Type impType, string interceptor)
         {
-            Container.Register(Component.For(@interface).ImplementedBy(impType).Named(impType.Name)
+            Container.Register(Component.For(@interface).ImplementedBy(impType).Named(impType.Name).LifestyleTransient()
                 .Interceptors(InterceptorReference.ForKey(interceptor)).Anywhere);
         }
 
         public override void RegisterTransient(string impKeyName, Type @interface, Type impType, string interceptor)
         {
-            Container.Register(Component.For(@interface).ImplementedBy(impType).Named(impKeyName)
+            Container.Register(Component.For(@interface).ImplementedBy(impType).Named(impKeyName).LifestyleTransient()
+                .Interceptors(InterceptorReference.ForKey(interceptor)).Anywhere);
+        }
+
+        public override void RegisterSingleton(string impKeyName, Type @interface, Type impType, string interceptor)
+        {
+            Container.Register(Component.For(@interface).ImplementedBy(impType).Named(impKeyName).LifestyleSingleton()
+                .Interceptors(InterceptorReference.ForKey(interceptor)).Anywhere);
+        }
+
+        public override void RegisterScoped(string impKeyName, Type @interface, Type impType, string interceptor)
+        {
+            Container.Register(Component.For(@interface).ImplementedBy(impType).Named(impKeyName).LifestyleScoped()
                 .Interceptors(InterceptorReference.ForKey(interceptor)).Anywhere);
         }
 
