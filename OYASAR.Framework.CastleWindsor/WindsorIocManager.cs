@@ -89,6 +89,12 @@ namespace OYASAR.Framework.CastleWindsor
                 .Interceptors(InterceptorReference.ForKey(interceptor)).Anywhere);
         }
 
+        public override void RegisterTransient(string impKeyName, Type @interface, Type impType, string interceptor)
+        {
+            Container.Register(Component.For(@interface).ImplementedBy(impType).Named(impKeyName)
+                .Interceptors(InterceptorReference.ForKey(interceptor)).Anywhere);
+        }
+
         public override object Resolve(object obj)
         {
             return Container.Resolve(obj.GetType());
@@ -97,6 +103,16 @@ namespace OYASAR.Framework.CastleWindsor
         public override T Resolve<T>()
         {
             return Container.Resolve<T>();
+        }
+
+        public override object Resolve(object obj, string impKeyName)
+        {
+            return Container.Resolve(impKeyName, obj.GetType());
+        }
+
+        public override T Resolve<T>(string impKeyName)
+        {
+            return Container.Resolve<T>(impKeyName);
         }
 
         public override void RegisterTransient(Type @interface, Type impType)
@@ -112,6 +128,21 @@ namespace OYASAR.Framework.CastleWindsor
         public override void RegisterScoped(Type @interface, Type impType)
         {
             Container.Register(Component.For(@interface).ImplementedBy(impType).LifestyleScoped());
+        }
+
+        public override void RegisterTransient(string impKeyName, Type @interface, Type impType)
+        {
+            Container.Register(Component.For(@interface).ImplementedBy(impType).Named(impKeyName).LifestyleTransient());
+        }
+
+        public override void RegisterSingleton(string impKeyName, Type @interface, Type impType)
+        {
+            Container.Register(Component.For(@interface).ImplementedBy(impType).Named(impKeyName).LifestyleSingleton());
+        }
+
+        public override void RegisterScoped(string impKeyName, Type @interface, Type impType)
+        {
+            Container.Register(Component.For(@interface).ImplementedBy(impType).Named(impKeyName).LifestyleScoped());
         }
     }
 }

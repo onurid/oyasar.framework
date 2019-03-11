@@ -1,8 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net45;netstandard1.6</TargetFrameworks>
-    <Version>1.0.3</Version>
+    <TargetFrameworks>net451;netstandard1.6</TargetFrameworks>
+    <Version>1.0.4</Version>
     <Description>OYASAR.Framework.CastleWindsor</Description>
     <Authors>onuryasar.org</Authors>
     <Company>onuryasar.org</Company>
@@ -13,7 +13,7 @@
 
   <ItemGroup>
     <PackageReference Include="Castle.Windsor" Version="5.0.0" />
-    <PackageReference Include="OYASAR.Framework.Core" Version="1.0.6" />
+    <PackageReference Include="OYASAR.Framework.Core" Version="1.0.25" />
   </ItemGroup>
 
 </Project>
