@@ -100,7 +100,7 @@ namespace OYASAR.Framework.Core.Helper
 
                 if (implementedInterfaces2.Any())
                 {
-                    var interceptorTypeName = implementedInterfaces2.Where(x => x.Name == "IInterceptor").FirstOrDefault();
+                    var interceptorTypeName = implementedInterfaces2.Where(x => x.Name != "IInterceptor").FirstOrDefault();
                     
                     if (interceptorTypeName != null)
                         interceptorName = interceptorTypeName.Name.Substring(1);
