@@ -21,9 +21,19 @@ namespace OYASAR.Framework.Core.Manager
 
         public abstract void RegisterTransient(Type @interface, Type impType, string interceptor);
 
+        public abstract void RegisterTransient(string impKeyName, Type @interface, Type impType);
+        public abstract void RegisterSingleton(string impKeyName, Type @interface, Type impType);
+        public abstract void RegisterScoped(string impKeyName, Type @interface, Type impType);
+
+        public abstract void RegisterTransient(string impKeyName, Type @interface, Type impType, string interceptor);
+
         public abstract object Resolve(object obj);
 
         public abstract T Resolve<T>() where T : class;
+
+        public abstract object Resolve(object obj, string impKeyName);
+
+        public abstract T Resolve<T>(string impKeyName) where T : class;
 
         public virtual void Initialize()
         {

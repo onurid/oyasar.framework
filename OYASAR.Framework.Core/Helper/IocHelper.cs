@@ -67,7 +67,7 @@ namespace OYASAR.Framework.Core.Helper
         }
 
 
-        public static void RegisterIntefaceBasedTypes()
+        public static void RegisterIntefaceBasedTypes(bool byKeyName = false)
         {
             var assemblies = Utils.AppDomain.GetAllAssemblies(DomainHelper.BaseDirForDll);
 
@@ -78,12 +78,12 @@ namespace OYASAR.Framework.Core.Helper
             var singletonTypes = allTypes.Where(x => !x.GetTypeInfo().IsAbstract && typeof(ISingletonDependency).IsAssignableFrom(x) && x.GetTypeInfo().IsClass);
             var scopedTypes = allTypes.Where(x => !x.GetTypeInfo().IsAbstract && typeof(IScopedDependency).IsAssignableFrom(x) && x.GetTypeInfo().IsClass);
 
-            RegisterTypes(transientTypes, IocLifeTime.Transient);
-            RegisterTypes(singletonTypes, IocLifeTime.Singleton);
-            RegisterTypes(scopedTypes, IocLifeTime.Scoped);
+            RegisterTypes(transientTypes, IocLifeTime.Transient, byKeyName);
+            RegisterTypes(singletonTypes, IocLifeTime.Singleton, byKeyName);
+            RegisterTypes(scopedTypes, IocLifeTime.Scoped, byKeyName);
         }
 
-        private static void RegisterTypes(IEnumerable<Type> transientTypes, IocLifeTime lifeTime)
+        private static void RegisterTypes(IEnumerable<Type> transientTypes, IocLifeTime lifeTime, bool byKeyName)
         {
             foreach (var transientType in transientTypes)
             {
@@ -95,19 +95,39 @@ namespace OYASAR.Framework.Core.Helper
 
                 foreach (var @interface in implementedInterfaces)
                 {
-                    switch (lifeTime)
+                    if (byKeyName)
                     {
-                        case IocLifeTime.Transient:
-                            IocManager.Instance.RegisterTransient(@interface, transientType);
-                            break;
-                        case IocLifeTime.Scoped:
-                            IocManager.Instance.RegisterScoped(@interface, transientType);
-                            break;
-                        case IocLifeTime.Singleton:
-                            IocManager.Instance.RegisterSingleton(@interface, transientType);
-                            break;
-                        default:
-                            throw new ArgumentOutOfRangeException(nameof(lifeTime), lifeTime, null);
+                        switch (lifeTime)
+                        {
+                            case IocLifeTime.Transient:
+                                IocManager.Instance.RegisterTransient(transientType.Name, @interface, transientType);
+                                break;
+                            case IocLifeTime.Scoped:
+                                IocManager.Instance.RegisterScoped(transientType.Name, @interface, transientType);
+                                break;
+                            case IocLifeTime.Singleton:
+                                IocManager.Instance.RegisterSingleton(transientType.Name, @interface, transientType);
+                                break;
+                            default:
+                                throw new ArgumentOutOfRangeException(nameof(lifeTime), lifeTime, null);
+                        }
+                    }
+                    else
+                    {
+                        switch (lifeTime)
+                        {
+                            case IocLifeTime.Transient:
+                                IocManager.Instance.RegisterTransient(@interface, transientType);
+                                break;
+                            case IocLifeTime.Scoped:
+                                IocManager.Instance.RegisterScoped(@interface, transientType);
+                                break;
+                            case IocLifeTime.Singleton:
+                                IocManager.Instance.RegisterSingleton(@interface, transientType);
+                                break;
+                            default:
+                                throw new ArgumentOutOfRangeException(nameof(lifeTime), lifeTime, null);
+                        }
                     }
                 }
             }

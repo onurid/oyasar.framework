@@ -14,5 +14,11 @@ namespace OYASAR.Framework.Core.Interface
         void RegisterScoped(Type @interface, Type impType);
 
         void RegisterTransient(Type @interface, Type impType, string interceptor);
+
+        void RegisterTransient(string impKeyName,Type @interface, Type impType);
+        void RegisterSingleton(string impKeyName, Type @interface, Type impType);
+        void RegisterScoped(string impKeyName, Type @interface, Type impType);
+
+        void RegisterTransient(string impKeyName, Type @interface, Type impType, string interceptor);
     }
 }
