@@ -1,0 +1,8 @@
+C:\repository\oyasar.framework\OYASAR.Framework.Log4Net\bin\Debug\netstandard1.5\OYASAR.Framework.Log4Net.deps.json
+C:\repository\oyasar.framework\OYASAR.Framework.Log4Net\bin\Debug\netstandard1.5\OYASAR.Framework.Log4Net.dll
+C:\repository\oyasar.framework\OYASAR.Framework.Log4Net\bin\Debug\netstandard1.5\OYASAR.Framework.Log4Net.pdb
+C:\repository\oyasar.framework\OYASAR.Framework.Log4Net\obj\Debug\netstandard1.5\OYASAR.Framework.Log4Net.csproj.CoreCompileInputs.cache
+C:\repository\oyasar.framework\OYASAR.Framework.Log4Net\obj\Debug\netstandard1.5\OYASAR.Framework.Log4Net.AssemblyInfoInputs.cache
+C:\repository\oyasar.framework\OYASAR.Framework.Log4Net\obj\Debug\netstandard1.5\OYASAR.Framework.Log4Net.AssemblyInfo.cs
+C:\repository\oyasar.framework\OYASAR.Framework.Log4Net\obj\Debug\netstandard1.5\OYASAR.Framework.Log4Net.dll
+C:\repository\oyasar.framework\OYASAR.Framework.Log4Net\obj\Debug\netstandard1.5\OYASAR.Framework.Log4Net.pdb

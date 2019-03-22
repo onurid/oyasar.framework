@@ -1,0 +1,10 @@
+C:\repository\oyasar.framework\OYASAR.Framework.Log4Net\bin\Debug\net35\OYASAR.Framework.Log4Net.dll
+C:\repository\oyasar.framework\OYASAR.Framework.Log4Net\bin\Debug\net35\OYASAR.Framework.Log4Net.pdb
+C:\repository\oyasar.framework\OYASAR.Framework.Log4Net\bin\Debug\net35\log4net.dll
+C:\repository\oyasar.framework\OYASAR.Framework.Log4Net\obj\Debug\net35\OYASAR.Framework.Log4Net.csprojAssemblyReference.cache
+C:\repository\oyasar.framework\OYASAR.Framework.Log4Net\obj\Debug\net35\OYASAR.Framework.Log4Net.csproj.CoreCompileInputs.cache
+C:\repository\oyasar.framework\OYASAR.Framework.Log4Net\obj\Debug\net35\OYASAR.Framework.Log4Net.AssemblyInfoInputs.cache
+C:\repository\oyasar.framework\OYASAR.Framework.Log4Net\obj\Debug\net35\OYASAR.Framework.Log4Net.AssemblyInfo.cs
+C:\repository\oyasar.framework\OYASAR.Framework.Log4Net\obj\Debug\net35\OYASAR.Framework.Log4Net.csproj.CopyComplete
+C:\repository\oyasar.framework\OYASAR.Framework.Log4Net\obj\Debug\net35\OYASAR.Framework.Log4Net.dll
+C:\repository\oyasar.framework\OYASAR.Framework.Log4Net\obj\Debug\net35\OYASAR.Framework.Log4Net.pdb
