@@ -1,0 +1,9 @@
+C:\repository\oyasar.framework\OYASAR.Framework.EFMySQL\bin\Debug\netstandard2.0\OYASAR.Framework.EFMySQL.deps.json
+C:\repository\oyasar.framework\OYASAR.Framework.EFMySQL\bin\Debug\netstandard2.0\OYASAR.Framework.EFMySQL.dll
+C:\repository\oyasar.framework\OYASAR.Framework.EFMySQL\bin\Debug\netstandard2.0\OYASAR.Framework.EFMySQL.pdb
+C:\repository\oyasar.framework\OYASAR.Framework.EFMySQL\obj\Debug\netstandard2.0\OYASAR.Framework.EFMySQL.csprojAssemblyReference.cache
+C:\repository\oyasar.framework\OYASAR.Framework.EFMySQL\obj\Debug\netstandard2.0\OYASAR.Framework.EFMySQL.csproj.CoreCompileInputs.cache
+C:\repository\oyasar.framework\OYASAR.Framework.EFMySQL\obj\Debug\netstandard2.0\OYASAR.Framework.EFMySQL.AssemblyInfoInputs.cache
+C:\repository\oyasar.framework\OYASAR.Framework.EFMySQL\obj\Debug\netstandard2.0\OYASAR.Framework.EFMySQL.AssemblyInfo.cs
+C:\repository\oyasar.framework\OYASAR.Framework.EFMySQL\obj\Debug\netstandard2.0\OYASAR.Framework.EFMySQL.dll
+C:\repository\oyasar.framework\OYASAR.Framework.EFMySQL\obj\Debug\netstandard2.0\OYASAR.Framework.EFMySQL.pdb
