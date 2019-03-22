@@ -1,0 +1,16 @@
+C:\repository\oyasar.framework\OYASAR.Framework.MongoDb\bin\Debug\net452\OYASAR.Framework.MongoDb.dll
+C:\repository\oyasar.framework\OYASAR.Framework.MongoDb\bin\Debug\net452\DnsClient.dll
+C:\repository\oyasar.framework\OYASAR.Framework.MongoDb\bin\Debug\net452\MongoDB.Driver.Legacy.dll
+C:\repository\oyasar.framework\OYASAR.Framework.MongoDb\bin\Debug\net452\MongoDB.Bson.dll
+C:\repository\oyasar.framework\OYASAR.Framework.MongoDb\bin\Debug\net452\MongoDB.Driver.dll
+C:\repository\oyasar.framework\OYASAR.Framework.MongoDb\bin\Debug\net452\MongoDB.Driver.Core.dll
+C:\repository\oyasar.framework\OYASAR.Framework.MongoDb\bin\Debug\net452\System.Buffers.dll
+C:\repository\oyasar.framework\OYASAR.Framework.MongoDb\bin\Debug\net452\System.Runtime.InteropServices.RuntimeInformation.dll
+C:\repository\oyasar.framework\OYASAR.Framework.MongoDb\obj\Debug\net452\OYASAR.Framework.MongoDb.csproj.CoreCompileInputs.cache
+C:\repository\oyasar.framework\OYASAR.Framework.MongoDb\obj\Debug\net452\OYASAR.Framework.MongoDb.AssemblyInfoInputs.cache
+C:\repository\oyasar.framework\OYASAR.Framework.MongoDb\obj\Debug\net452\OYASAR.Framework.MongoDb.AssemblyInfo.cs
+C:\repository\oyasar.framework\OYASAR.Framework.MongoDb\obj\Debug\net452\OYASAR.Framework.MongoDb.csproj.CopyComplete
+C:\repository\oyasar.framework\OYASAR.Framework.MongoDb\bin\Debug\net452\OYASAR.Framework.MongoDb.pdb
+C:\repository\oyasar.framework\OYASAR.Framework.MongoDb\bin\Debug\net452\OYASAR.Framework.Core.dll
+C:\repository\oyasar.framework\OYASAR.Framework.MongoDb\obj\Debug\net452\OYASAR.Framework.MongoDb.dll
+C:\repository\oyasar.framework\OYASAR.Framework.MongoDb\obj\Debug\net452\OYASAR.Framework.MongoDb.pdb
