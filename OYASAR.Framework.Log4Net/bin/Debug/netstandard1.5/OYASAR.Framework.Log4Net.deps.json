@@ -7,7 +7,7 @@
   "targets": {
     ".NETStandard,Version=v1.5": {},
     ".NETStandard,Version=v1.5/": {
-      "OYASAR.Framework.Log4Net/1.0.0": {
+      "OYASAR.Framework.Log4Net/1.0.1": {
         "dependencies": {
           "NETStandard.Library": "1.6.1",
           "Newtonsoft.Json": "12.0.1",
@@ -1349,7 +1349,7 @@
     }
   },
   "libraries": {
-    "OYASAR.Framework.Log4Net/1.0.0": {
+    "OYASAR.Framework.Log4Net/1.0.1": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

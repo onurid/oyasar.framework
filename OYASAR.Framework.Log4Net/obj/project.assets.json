@@ -6356,7 +6356,7 @@
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
-    "version": "1.0.0",
+    "version": "1.0.1",
     "restore": {
       "projectUniqueName": "C:\\repository\\oyasar.framework\\OYASAR.Framework.Log4Net\\OYASAR.Framework.Log4Net.csproj",
       "projectName": "OYASAR.Framework.Log4Net",
