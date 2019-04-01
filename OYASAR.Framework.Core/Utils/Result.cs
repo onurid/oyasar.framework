@@ -13,7 +13,7 @@
 
         public static Result Ok(object data, object resultId)
         {
-            return new Result { Success = true, Data = data };
+            return new Result { Success = true, Data = data, ResultId = resultId };
         }
 
         public static Result Error(Error data)
