@@ -37,6 +37,8 @@ namespace OYASAR.Framework.Core.Manager
 
         public abstract T Resolve<T>(string impKeyName) where T : class;
 
+        public abstract IDisposable BeginScope();
+
         public virtual void Initialize()
         {
             
