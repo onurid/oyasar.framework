@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFrameworks>net451;netstandard1.6</TargetFrameworks>
-    <Version>1.0.6</Version>
+    <Version>1.0.7</Version>
     <Description>OYASAR.Framework.CastleWindsor</Description>
     <Authors>onuryasar.org</Authors>
     <Company>onuryasar.org</Company>
@@ -13,7 +13,7 @@
 
   <ItemGroup>
     <PackageReference Include="Castle.Windsor" Version="5.0.0" />
-    <PackageReference Include="OYASAR.Framework.Core" Version="1.0.27" />
+    <PackageReference Include="OYASAR.Framework.Core" Version="1.0.33" />
   </ItemGroup>
 
 </Project>

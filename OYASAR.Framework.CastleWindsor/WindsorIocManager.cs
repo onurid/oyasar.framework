@@ -1,5 +1,6 @@
 ﻿using System;
 using Castle.Core;
+using Castle.MicroKernel.Lifestyle;
 using Castle.MicroKernel.Registration;
 using Castle.Windsor;
 using OYASAR.Framework.Core.Manager;
@@ -155,6 +156,11 @@ namespace OYASAR.Framework.CastleWindsor
         public override void RegisterScoped(string impKeyName, Type @interface, Type impType)
         {
             Container.Register(Component.For(@interface).ImplementedBy(impType).Named(impKeyName).LifestyleScoped());
+        }
+
+        public override IDisposable BeginScope()
+        {
+            return Container.BeginScope();
         }
     }
 }
