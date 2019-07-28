@@ -117,13 +117,13 @@ namespace OYASAR.Framework.Core.Helper
                                 switch (lifeTime)
                                 {
                                     case IocLifeTime.Transient:
-                                        IocManager.Instance.RegisterTransient(transientType.Name, @interface, transientType, interceptorName);
+                                        IocManager.Instance.RegisterTransient(transientType.FullName, @interface, transientType, interceptorName);
                                         break;
                                     case IocLifeTime.Scoped:
-                                        IocManager.Instance.RegisterScoped(transientType.Name, @interface, transientType, interceptorName);
+                                        IocManager.Instance.RegisterScoped(transientType.FullName, @interface, transientType, interceptorName);
                                         break;
                                     case IocLifeTime.Singleton:
-                                        IocManager.Instance.RegisterSingleton(transientType.Name, @interface, transientType, interceptorName);
+                                        IocManager.Instance.RegisterSingleton(transientType.FullName, @interface, transientType, interceptorName);
                                         break;
                                     default:
                                         throw new ArgumentOutOfRangeException(nameof(lifeTime), lifeTime, null);
@@ -156,13 +156,13 @@ namespace OYASAR.Framework.Core.Helper
                                     switch (lifeTime)
                                     {
                                         case IocLifeTime.Transient:
-                                            IocManager.Instance.RegisterTransient(transientType.Name, @interface, transientType);
+                                            IocManager.Instance.RegisterTransient(transientType.FullName, @interface, transientType);
                                             break;
                                         case IocLifeTime.Scoped:
-                                            IocManager.Instance.RegisterScoped(transientType.Name, @interface, transientType);
+                                            IocManager.Instance.RegisterScoped(transientType.FullName, @interface, transientType);
                                             break;
                                         case IocLifeTime.Singleton:
-                                            IocManager.Instance.RegisterSingleton(transientType.Name, @interface, transientType);
+                                            IocManager.Instance.RegisterSingleton(transientType.FullName, @interface, transientType);
                                             break;
                                         default:
                                             throw new ArgumentOutOfRangeException(nameof(lifeTime), lifeTime, null);
@@ -196,13 +196,13 @@ namespace OYASAR.Framework.Core.Helper
                             switch (lifeTime)
                             {
                                 case IocLifeTime.Transient:
-                                    IocManager.Instance.RegisterTransient(transientType.Name, @interface, transientType);
+                                    IocManager.Instance.RegisterTransient(transientType.FullName, @interface, transientType);
                                     break;
                                 case IocLifeTime.Scoped:
-                                    IocManager.Instance.RegisterScoped(transientType.Name, @interface, transientType);
+                                    IocManager.Instance.RegisterScoped(transientType.FullName, @interface, transientType);
                                     break;
                                 case IocLifeTime.Singleton:
-                                    IocManager.Instance.RegisterSingleton(transientType.Name, @interface, transientType);
+                                    IocManager.Instance.RegisterSingleton(transientType.FullName, @interface, transientType);
                                     break;
                                 default:
                                     throw new ArgumentOutOfRangeException(nameof(lifeTime), lifeTime, null);
