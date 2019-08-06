@@ -156,13 +156,13 @@ namespace OYASAR.Framework.Core.Helper
                                     switch (lifeTime)
                                     {
                                         case IocLifeTime.Transient:
-                                            IocManager.Instance.RegisterTransient(transientType.FullName, @interface, transientType);
+                                            IocManager.Instance.RegisterTransient(transientType.Name, @interface, transientType);
                                             break;
                                         case IocLifeTime.Scoped:
-                                            IocManager.Instance.RegisterScoped(transientType.FullName, @interface, transientType);
+                                            IocManager.Instance.RegisterScoped(transientType.Name, @interface, transientType);
                                             break;
                                         case IocLifeTime.Singleton:
-                                            IocManager.Instance.RegisterSingleton(transientType.FullName, @interface, transientType);
+                                            IocManager.Instance.RegisterSingleton(transientType.Name, @interface, transientType);
                                             break;
                                         default:
                                             throw new ArgumentOutOfRangeException(nameof(lifeTime), lifeTime, null);
