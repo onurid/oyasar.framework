@@ -13,6 +13,8 @@ namespace OYASAR.Framework.Core.Helper
         public static Type TypeInterface { get; set; }
         public static Type TypeImplementation { get; set; }
 
+        public static RegisterType RegisterTypeValue { get; private set;}
+
         public static void RegisterIntefaceBasedTypes<TDependency, TTransient, TSingleton, TScoped>(Action[] action, string baseDir)
         {
             var assemblies = Utils.AppDomain.GetAllAssemblies(baseDir);
@@ -27,6 +29,12 @@ namespace OYASAR.Framework.Core.Helper
             RegisterTypes<TDependency, TTransient, TSingleton, TScoped>(transientTypes, IocLifeTime.Transient, action);
             RegisterTypes<TDependency, TTransient, TSingleton, TScoped>(singletonTypes, IocLifeTime.Singleton, action);
             RegisterTypes<TDependency, TTransient, TSingleton, TScoped>(scopedTypes, IocLifeTime.Scoped, action);
+        }
+
+        public enum RegisterType
+        {
+            AsName,
+            AsFullName
         }
 
         private enum IocLifeTime
@@ -67,8 +75,10 @@ namespace OYASAR.Framework.Core.Helper
         }
 
 
-        public static void RegisterIntefaceBasedTypes(bool byKeyName = false)
+        public static void RegisterIntefaceBasedTypes(RegisterType registerType = RegisterType.AsName, bool byKeyName = false)
         {
+            RegisterTypeValue = registerType;
+
             var assemblies = Utils.AppDomain.GetAllAssemblies(DomainHelper.BaseDirForDll);
 
             var allTypes = assemblies.SelectMany(x => x.ExportedTypes).
@@ -88,6 +98,11 @@ namespace OYASAR.Framework.Core.Helper
             foreach (var transientType in transientTypes)
             {
                 //var implementedInterfaces = transientType.GetTypeInfo().ImplementedInterfaces;
+
+                var transientTypeName = transientType.Name;
+
+                if (RegisterTypeValue == RegisterType.AsFullName)
+                    transientTypeName = transientType.FullName;
 
                 var implementedInterfaces = transientType.GetTypeInfo().ImplementedInterfaces
                     .Where(x => typeof(IDependency).IsAssignableFrom(x) && x != typeof(ITransientDependency)
@@ -117,13 +132,13 @@ namespace OYASAR.Framework.Core.Helper
                                 switch (lifeTime)
                                 {
                                     case IocLifeTime.Transient:
-                                        IocManager.Instance.RegisterTransient(transientType.FullName, @interface, transientType, interceptorName);
+                                        IocManager.Instance.RegisterTransient(transientTypeName, @interface, transientType, interceptorName);
                                         break;
                                     case IocLifeTime.Scoped:
-                                        IocManager.Instance.RegisterScoped(transientType.FullName, @interface, transientType, interceptorName);
+                                        IocManager.Instance.RegisterScoped(transientTypeName, @interface, transientType, interceptorName);
                                         break;
                                     case IocLifeTime.Singleton:
-                                        IocManager.Instance.RegisterSingleton(transientType.FullName, @interface, transientType, interceptorName);
+                                        IocManager.Instance.RegisterSingleton(transientTypeName, @interface, transientType, interceptorName);
                                         break;
                                     default:
                                         throw new ArgumentOutOfRangeException(nameof(lifeTime), lifeTime, null);
@@ -196,13 +211,13 @@ namespace OYASAR.Framework.Core.Helper
                             switch (lifeTime)
                             {
                                 case IocLifeTime.Transient:
-                                    IocManager.Instance.RegisterTransient(transientType.FullName, @interface, transientType);
+                                    IocManager.Instance.RegisterTransient(transientTypeName, @interface, transientType);
                                     break;
                                 case IocLifeTime.Scoped:
-                                    IocManager.Instance.RegisterScoped(transientType.FullName, @interface, transientType);
+                                    IocManager.Instance.RegisterScoped(transientTypeName, @interface, transientType);
                                     break;
                                 case IocLifeTime.Singleton:
-                                    IocManager.Instance.RegisterSingleton(transientType.FullName, @interface, transientType);
+                                    IocManager.Instance.RegisterSingleton(transientTypeName, @interface, transientType);
                                     break;
                                 default:
                                     throw new ArgumentOutOfRangeException(nameof(lifeTime), lifeTime, null);
