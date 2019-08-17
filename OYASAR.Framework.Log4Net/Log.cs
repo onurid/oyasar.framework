@@ -46,6 +46,10 @@ namespace OYASAR.Framework.Log4Net
 
             _log.Info("Application - Main is invoked");
         }
+
+        public static void SetLog4NetConfiguraitonForS3()
+        {
+        }
     }
 
 }
