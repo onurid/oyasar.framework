@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Data.Entity;
 
 // ReSharper disable once CheckNamespace
-namespace OYASAR.Framework.EFNet
+namespace OYASAR.Framework.EFProvider.Net.MSSQL
 {
     public class EFRepository<TK> : IEFRepository<TK>
     {

@@ -3,17 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using OYASAR.Framework.Core.Interface;
-
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 
-namespace OYASAR.Framework.EFCore
-{
-    public class EfRepository<TK> : IEFRepository<TK>
+namespace OYASAR.Framework.EFProvider.NetCore.MySQL
+{ 
+    public class EFRepository<TK> : IEFRepository<TK>
     {
         private readonly DbContext _dbContext;
 
-        public EfRepository(TK dbContext)
+        public EFRepository(TK dbContext)
         {
             this._dbContext = dbContext as DbContext;
         }

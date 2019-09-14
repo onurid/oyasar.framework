@@ -8,13 +8,13 @@ using OYASAR.Framework.Core.Interface;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 
-namespace OYASAR.Framework.EFCore
+namespace OYASAR.Framework.EFProvider.NetCore.MSSQL
 {
-    public class EfRepository<TK> : IEFRepository<TK>
+    public class EFRepository<TK> : IEFRepository<TK>
     {
         private readonly DbContext _dbContext;
 
-        public EfRepository(TK dbContext)
+        public EFRepository(TK dbContext)
         {
             this._dbContext = dbContext as DbContext;
         }
