@@ -11,7 +11,7 @@ using System.Data.Entity;
 // ReSharper disable once CheckNamespace
 namespace OYASAR.Framework.EFProvider.Net.MSSQL
 {
-    public class EFRepository<TK> : IEFRepository<TK>
+    public class EFRepository<TK> : IEFMSSQLRepository<TK>
     {
         private readonly DbContext _dbContext;
 

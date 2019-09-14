@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace OYASAR.Framework.EFProvider.NetCore.MySQL
 { 
-    public class EFRepository<TK> : IEFRepository<TK>
+    public class EFRepository<TK> : IEFMySQLRepository<TK>
     {
         private readonly DbContext _dbContext;
 
