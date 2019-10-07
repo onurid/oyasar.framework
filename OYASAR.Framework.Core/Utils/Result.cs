@@ -5,6 +5,11 @@
         public bool Success { get; set; }
         public object Data { get; set; }
 
+        private Result()
+        {
+
+        }
+
         public static Result Ok()
         {
             return new Result { Success = true };
@@ -16,6 +21,11 @@
         }
 
         public static Result Ok(string message, object resultId)
+        {
+            return new Result { Success = true, Data = new { Message = message, ResultId = resultId } };
+        }
+
+        public static Result Ok(object resultId, string message = "Success")
         {
             return new Result { Success = true, Data = new { Message = message, ResultId = resultId } };
         }
