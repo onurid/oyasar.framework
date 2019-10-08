@@ -1,5 +1,5 @@
-﻿using OYASAR.Framework.Core.Entity;
-using System;
+﻿using System;
+using OYASAR.Framework.Core.Entity;
 
 namespace OYASAR.Framework.Core.Helper
 {

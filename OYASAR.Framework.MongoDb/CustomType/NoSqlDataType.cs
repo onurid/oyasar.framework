@@ -1,14 +1,14 @@
-﻿using MongoDB.Bson;
+﻿using System.Collections.Generic;
+using System.Linq;
+using MongoDB.Bson;
 using MongoDB.Driver;
 using OYASAR.Framework.Core.CustomType;
 using OYASAR.Framework.Core.Interface;
 using OYASAR.Framework.MongoDb.Model;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace OYASAR.Framework.MongoDb.CustomType
 {
-	public class NoSqlDataType<T> : NoSqlDataType, INoSqlDataType<T> where T : class
+    public class NoSqlDataType<T> : NoSqlDataType, INoSqlDataType<T> where T : class
 	{
 		public IEnumerable<T> ToFind()
 		{

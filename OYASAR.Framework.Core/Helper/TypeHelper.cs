@@ -3,7 +3,7 @@ using System.Reflection;
 
 namespace OYASAR.Framework.Core.Helper
 {
-    #if (NET451 || NETSTANDARD1_3 || NET35)
+#if (NET451 || NETSTANDARD1_3 || NET35)
     public static class TypeHelper
     {
         public static bool IsAssignableFrom(Type fistType, Type secondType)

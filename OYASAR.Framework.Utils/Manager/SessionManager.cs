@@ -1,6 +1,4 @@
-﻿using System.Text;
-using OYASAR.Framework.Utils.Helper;
-
+﻿
 #if NET451
 using System.Web;
 #endif
@@ -11,59 +9,59 @@ using System.Web;
 
 namespace OYASAR.Framework.Utils.Manager
 {
-//#if NETSTANDARD1_3
-//    public class SessionManager : ISessionManager
-//    {
-//        private const string Key = "Key";
-//        private readonly ISession Session;
+    //#if NETSTANDARD1_3
+    //    public class SessionManager : ISessionManager
+    //    {
+    //        private const string Key = "Key";
+    //        private readonly ISession Session;
 
-//        public SessionManager(ISession Session)
-//        {
-//            this.Session = Session;
-//        }
+    //        public SessionManager(ISession Session)
+    //        {
+    //            this.Session = Session;
+    //        }
 
-//        public T GetIdentity<T>()
-//        {
-//            //if (Session.IsAvailable)
+    //        public T GetIdentity<T>()
+    //        {
+    //            //if (Session.IsAvailable)
 
-//            //var result = Session.TryGetValue(Key, out byte[] value);
-//            // if (result)
-//            //var jsonStr = Session.Keys.ToList().Single(x => x == Key);
-//            Session.TryGetValue(Key, out byte[] value);
-//            var jsonStr = value.ToString();
-            
-//            return JsonHelper.Deserialize<T>(jsonStr);
-//        }
+    //            //var result = Session.TryGetValue(Key, out byte[] value);
+    //            // if (result)
+    //            //var jsonStr = Session.Keys.ToList().Single(x => x == Key);
+    //            Session.TryGetValue(Key, out byte[] value);
+    //            var jsonStr = value.ToString();
 
-//        public void CreateIdentity<T>(T identity)
-//        {
-//            //if (Session.IsAvailable)
+    //            return JsonHelper.Deserialize<T>(jsonStr);
+    //        }
 
-//            var jsonStr = JsonHelper.Serialize(identity);
-//            var bytes = Encoding.UTF8.GetBytes(jsonStr);
-//            Session.Set(Key, bytes);
-//        }
+    //        public void CreateIdentity<T>(T identity)
+    //        {
+    //            //if (Session.IsAvailable)
 
-//        public void RemoveIdentity()
-//        {
-//            Session.Clear();
-//        }
+    //            var jsonStr = JsonHelper.Serialize(identity);
+    //            var bytes = Encoding.UTF8.GetBytes(jsonStr);
+    //            Session.Set(Key, bytes);
+    //        }
 
-//        public void SetTimeout(int timeout)
-//        {
+    //        public void RemoveIdentity()
+    //        {
+    //            Session.Clear();
+    //        }
 
-//        }
-//    }
+    //        public void SetTimeout(int timeout)
+    //        {
 
-//    public interface ISessionManager
-//    {
-//        T GetIdentity<T>();
-//        void CreateIdentity<T>(T identity);
-//        void RemoveIdentity();
-//    }
+    //        }
+    //    }
+
+    //    public interface ISessionManager
+    //    {
+    //        T GetIdentity<T>();
+    //        void CreateIdentity<T>(T identity);
+    //        void RemoveIdentity();
+    //    }
 
 
-//#endif
+    //#endif
 
 #if NET451
     public static class SessionManager

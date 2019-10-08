@@ -1,13 +1,13 @@
-﻿using OYASAR.Framework.Core.Extensions;
-using OYASAR.Framework.Core.Helper;
-using OYASAR.Framework.Core.Interface;
-using OYASAR.Framework.Core.Utils;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 using OYASAR.Framework.Core.CustomType;
+using OYASAR.Framework.Core.Extensions;
+using OYASAR.Framework.Core.Helper;
+using OYASAR.Framework.Core.Interface;
+using OYASAR.Framework.Core.Utils;
 
 namespace OYASAR.Framework.Core.Abstract
 {

@@ -1,6 +1,6 @@
 ﻿using System;
-using OYASAR.Framework.Core.Interface;
 using Microsoft.Extensions.DependencyInjection;
+using OYASAR.Framework.Core.Interface;
 
 namespace OYASAR.Framework.NetCoreIoc
 {

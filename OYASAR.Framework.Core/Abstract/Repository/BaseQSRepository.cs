@@ -1,10 +1,10 @@
-﻿using OYASAR.Framework.Core.CustomType;
-using OYASAR.Framework.Core.Interface;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
+using OYASAR.Framework.Core.CustomType;
+using OYASAR.Framework.Core.Interface;
 
 namespace OYASAR.Framework.Core.Abstract.Repository
 {

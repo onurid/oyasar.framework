@@ -1,10 +1,10 @@
-﻿using log4net;
-using Newtonsoft.Json;
-using OYASAR.Framework.Core;
-using System;
+﻿using System;
 using System.IO;
 using System.Reflection;
 using System.Xml;
+using log4net;
+using Newtonsoft.Json;
+using OYASAR.Framework.Core;
 
 namespace OYASAR.Framework.Log4Net
 {

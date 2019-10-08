@@ -1,9 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
 using AutoMapper;
-using System.Collections.Generic;
 using AutoMapper.QueryableExtensions;
-using System.Linq;
 
 namespace OYASAR.Framework.Mapper.AutoMapping
 {

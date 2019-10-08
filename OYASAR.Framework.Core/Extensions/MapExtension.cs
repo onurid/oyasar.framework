@@ -1,6 +1,6 @@
-﻿using OYASAR.Framework.Core.Interface;
+﻿using System.Linq;
+using OYASAR.Framework.Core.Interface;
 using OYASAR.Framework.Core.Utils;
-using System.Linq;
 
 namespace OYASAR.Framework.Core.Extensions
 {

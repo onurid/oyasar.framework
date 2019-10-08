@@ -1,7 +1,7 @@
-﻿using OYASAR.Framework.Core.Interface;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using OYASAR.Framework.Core.Interface;
 
 namespace OYASAR.Framework.Core.Abstract
 {

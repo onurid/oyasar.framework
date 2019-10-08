@@ -1,7 +1,7 @@
-﻿using OYASAR.Framework.Core.CustomType;
-using OYASAR.Framework.Core.Interface;
-using System;
+﻿using System;
 using System.Linq.Expressions;
+using OYASAR.Framework.Core.CustomType;
+using OYASAR.Framework.Core.Interface;
 
 namespace OYASAR.Framework.Core.Abstract
 {

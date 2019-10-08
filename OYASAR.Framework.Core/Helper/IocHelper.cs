@@ -1,9 +1,9 @@
-﻿using OYASAR.Framework.Core.Interface;
-using OYASAR.Framework.Core.Manager;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using OYASAR.Framework.Core.Interface;
+using OYASAR.Framework.Core.Manager;
 
 namespace OYASAR.Framework.Core.Helper
 {
