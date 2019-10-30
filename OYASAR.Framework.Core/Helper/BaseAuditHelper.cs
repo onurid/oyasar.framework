@@ -17,29 +17,29 @@ namespace OYASAR.Framework.Core.Helper
 
         public BaseAuditHelper(TDataObject dataObject, BaseAuditType baseAuditType, bool isNew = false)
         {
-            if (TypeHelper.IsAssignableFrom(typeof(TDataObject), typeof(ModifiedAuditEntity<TId>)) && baseAuditType == BaseAuditType.Modify)
+            if (TypeHelper.IsAssignableFrom(typeof(TDataObject), typeof(ModifyAuditEntity<TId>)) && baseAuditType == BaseAuditType.Modify)
             {
-                var modifyData = dataObject as ModifiedAuditEntity<TId>;
-                modifyData.ModifiedDate = DateTime.Today;
+                var modifyData = dataObject as ModifyAuditEntity<TId>;
+                modifyData.ModifyDate = DateTime.Today;
                 modifyData.ModifiedBy = SystemUserId;
                 if (isNew)
                 {
-                    modifyData.CreatedDate = DateTime.Today;
+                    modifyData.CreateDate = DateTime.Today;
                     modifyData.CreatedBy = SystemUserId;
                 }
             }
 
-            if (TypeHelper.IsAssignableFrom(typeof(TDataObject), typeof(CreatedAuditEntity<TId>)) && baseAuditType == BaseAuditType.Create && isNew)
+            if (TypeHelper.IsAssignableFrom(typeof(TDataObject), typeof(CreateAuditEntity<TId>)) && baseAuditType == BaseAuditType.Create && isNew)
             {
-                var modifyData = dataObject as CreatedAuditEntity<TId>;
-                modifyData.CreatedDate = DateTime.Today;
+                var modifyData = dataObject as CreateAuditEntity<TId>;
+                modifyData.CreateDate = DateTime.Today;
                 modifyData.CreatedBy = SystemUserId;
             }
 
-            if (TypeHelper.IsAssignableFrom(typeof(TDataObject), typeof(DeletedAuditEntity<TId>)) && baseAuditType == BaseAuditType.Delete)
+            if (TypeHelper.IsAssignableFrom(typeof(TDataObject), typeof(DeleteAuditEntity<TId>)) && baseAuditType == BaseAuditType.Delete)
             {
-                var modifyData = dataObject as DeletedAuditEntity<TId>;
-                modifyData.DeletedDate = DateTime.Today;
+                var modifyData = dataObject as DeleteAuditEntity<TId>;
+                modifyData.DeleteDate = DateTime.Today;
                 modifyData.DeletedBy = SystemUserId;
             }
         }
