@@ -8,12 +8,32 @@ using OYASAR.Framework.Core.Manager;
 namespace OYASAR.Framework.Core.Helper
 {
 #if (NET451 || NETSTANDARD1_3)
-    public static class IocHelper
+    public class IocHelper
     {
         public static Type TypeInterface { get; set; }
         public static Type TypeImplementation { get; set; }
+        private readonly IList<KeyValuePair<string, string>> _registered;
 
-        public static RegisterType RegisterTypeValue { get; private set;}
+        public IocHelper()
+        {
+            _registered = new List<KeyValuePair<string, string>>();
+        }
+
+        private void Register(string interfaceName, string implementationName)
+        {
+            _registered.Add(
+                new KeyValuePair<string, string>(interfaceName, implementationName)
+                );
+        }
+
+        private bool CheckIsRegistered(string interfaceName, string implementationName)
+        {
+            return _registered
+                .Where(x => x.Key == interfaceName && x.Value == implementationName)
+                .Any();
+        }
+
+        public static RegisterType RegisterTypeValue { get; private set; }
 
         public static void RegisterIntefaceBasedTypes<TDependency, TTransient, TSingleton, TScoped>(Action[] action, string baseDir)
         {
@@ -88,12 +108,14 @@ namespace OYASAR.Framework.Core.Helper
             var singletonTypes = allTypes.Where(x => !x.GetTypeInfo().IsAbstract && typeof(ISingletonDependency).IsAssignableFrom(x) && x.GetTypeInfo().IsClass);
             var scopedTypes = allTypes.Where(x => !x.GetTypeInfo().IsAbstract && typeof(IScopedDependency).IsAssignableFrom(x) && x.GetTypeInfo().IsClass);
 
-            RegisterTypes(transientTypes, IocLifeTime.Transient, byKeyName);
-            RegisterTypes(singletonTypes, IocLifeTime.Singleton, byKeyName);
-            RegisterTypes(scopedTypes, IocLifeTime.Scoped, byKeyName);
+            var iocHelper = new IocHelper();
+
+            RegisterTypes(transientTypes, IocLifeTime.Transient, byKeyName, iocHelper);
+            RegisterTypes(singletonTypes, IocLifeTime.Singleton, byKeyName, iocHelper);
+            RegisterTypes(scopedTypes, IocLifeTime.Scoped, byKeyName, iocHelper);
         }
 
-        private static void RegisterTypes(IEnumerable<Type> transientTypes, IocLifeTime lifeTime, bool byKeyName)
+        private static void RegisterTypes(IEnumerable<Type> transientTypes, IocLifeTime lifeTime, bool byKeyName, IocHelper iocHelper)
         {
             foreach (var transientType in transientTypes)
             {
@@ -116,79 +138,44 @@ namespace OYASAR.Framework.Core.Helper
                 if (implementedInterfaces2.Any())
                 {
                     var interceptorTypeName = implementedInterfaces2.Where(x => x.Name != "IInterceptor").FirstOrDefault();
-                    
+
                     if (interceptorTypeName != null)
                         interceptorName = interceptorTypeName.Name.Substring(1);
                 }
 
                 foreach (var @interface in implementedInterfaces)
                 {
-                    if (implementedInterfaces2.Any())
+                    if (!iocHelper.CheckIsRegistered(@interface.Name, transientTypeName))
                     {
-                        if (!implementedInterfaces2.Where(x => x.Name == @interface.Name).Any())
+                        if (implementedInterfaces2.Any())
                         {
-                            if (byKeyName)
-                            {
-                                switch (lifeTime)
-                                {
-                                    case IocLifeTime.Transient:
-                                        IocManager.Instance.RegisterTransient(transientTypeName, @interface, transientType, interceptorName);
-                                        break;
-                                    case IocLifeTime.Scoped:
-                                        IocManager.Instance.RegisterScoped(transientTypeName, @interface, transientType, interceptorName);
-                                        break;
-                                    case IocLifeTime.Singleton:
-                                        IocManager.Instance.RegisterSingleton(transientTypeName, @interface, transientType, interceptorName);
-                                        break;
-                                    default:
-                                        throw new ArgumentOutOfRangeException(nameof(lifeTime), lifeTime, null);
-                                }
-                            }
-                            else
-                            {
-                                switch (lifeTime)
-                                {
-                                    case IocLifeTime.Transient:
-                                        IocManager.Instance.RegisterTransient(@interface, transientType, interceptorName);
-                                        break;
-                                    case IocLifeTime.Scoped:
-                                        IocManager.Instance.RegisterScoped(@interface, transientType);
-                                        break;
-                                    case IocLifeTime.Singleton:
-                                        IocManager.Instance.RegisterSingleton(@interface, transientType);
-                                        break;
-                                    default:
-                                        throw new ArgumentOutOfRangeException(nameof(lifeTime), lifeTime, null);
-                                }
-                            }
-                        }
-                        else
-                        {
-                            if (transientType.Name == interceptorName)
+                            if (!implementedInterfaces2.Where(x => x.Name == @interface.Name).Any())
                             {
                                 if (byKeyName)
                                 {
                                     switch (lifeTime)
                                     {
                                         case IocLifeTime.Transient:
-                                            IocManager.Instance.RegisterTransient(transientType.Name, @interface, transientType);
+                                            IocManager.Instance.RegisterTransient(transientTypeName, @interface, transientType, interceptorName);
                                             break;
                                         case IocLifeTime.Scoped:
-                                            IocManager.Instance.RegisterScoped(transientType.Name, @interface, transientType);
+                                            IocManager.Instance.RegisterScoped(transientTypeName, @interface, transientType, interceptorName);
                                             break;
                                         case IocLifeTime.Singleton:
-                                            IocManager.Instance.RegisterSingleton(transientType.Name, @interface, transientType);
+                                            IocManager.Instance.RegisterSingleton(transientTypeName, @interface, transientType, interceptorName);
                                             break;
                                         default:
                                             throw new ArgumentOutOfRangeException(nameof(lifeTime), lifeTime, null);
                                     }
+
+                                    iocHelper.Register(@interface.Name, transientTypeName);
                                 }
                                 else
                                 {
                                     switch (lifeTime)
                                     {
                                         case IocLifeTime.Transient:
-                                            IocManager.Instance.RegisterTransient(@interface, transientType);
+                                            IocManager.Instance.RegisterTransient(@interface, transientType, interceptorName);
                                             break;
                                         case IocLifeTime.Scoped:
                                             IocManager.Instance.RegisterScoped(@interface, transientType);
@@ -199,45 +186,95 @@ namespace OYASAR.Framework.Core.Helper
                                         default:
                                             throw new ArgumentOutOfRangeException(nameof(lifeTime), lifeTime, null);
                                     }
+
+                                    iocHelper.Register(@interface.Name, transientTypeName);
                                 }
                             }
-                        }
-
-                    }
-                    else
-                    {
-                        if (byKeyName)
-                        {
-                            switch (lifeTime)
+                            else
                             {
-                                case IocLifeTime.Transient:
-                                    IocManager.Instance.RegisterTransient(transientTypeName, @interface, transientType);
-                                    break;
-                                case IocLifeTime.Scoped:
-                                    IocManager.Instance.RegisterScoped(transientTypeName, @interface, transientType);
-                                    break;
-                                case IocLifeTime.Singleton:
-                                    IocManager.Instance.RegisterSingleton(transientTypeName, @interface, transientType);
-                                    break;
-                                default:
-                                    throw new ArgumentOutOfRangeException(nameof(lifeTime), lifeTime, null);
+                                if (transientType.Name == interceptorName)
+                                {
+                                    if (byKeyName)
+                                    {
+                                        switch (lifeTime)
+                                        {
+                                            case IocLifeTime.Transient:
+                                                IocManager.Instance.RegisterTransient(transientType.Name, @interface, transientType);
+                                                break;
+                                            case IocLifeTime.Scoped:
+                                                IocManager.Instance.RegisterScoped(transientType.Name, @interface, transientType);
+                                                break;
+                                            case IocLifeTime.Singleton:
+                                                IocManager.Instance.RegisterSingleton(transientType.Name, @interface, transientType);
+                                                break;
+                                            default:
+                                                throw new ArgumentOutOfRangeException(nameof(lifeTime), lifeTime, null);
+                                        }
+
+                                        iocHelper.Register(@interface.Name, transientTypeName);
+                                    }
+                                    else
+                                    {
+                                        switch (lifeTime)
+                                        {
+                                            case IocLifeTime.Transient:
+                                                IocManager.Instance.RegisterTransient(@interface, transientType);
+                                                break;
+                                            case IocLifeTime.Scoped:
+                                                IocManager.Instance.RegisterScoped(@interface, transientType);
+                                                break;
+                                            case IocLifeTime.Singleton:
+                                                IocManager.Instance.RegisterSingleton(@interface, transientType);
+                                                break;
+                                            default:
+                                                throw new ArgumentOutOfRangeException(nameof(lifeTime), lifeTime, null);
+                                        }
+
+                                        iocHelper.Register(@interface.Name, transientTypeName);
+                                    }
+                                }
                             }
+
                         }
                         else
                         {
-                            switch (lifeTime)
+                            if (byKeyName)
                             {
-                                case IocLifeTime.Transient:
-                                    IocManager.Instance.RegisterTransient(@interface, transientType);
-                                    break;
-                                case IocLifeTime.Scoped:
-                                    IocManager.Instance.RegisterScoped(@interface, transientType);
-                                    break;
-                                case IocLifeTime.Singleton:
-                                    IocManager.Instance.RegisterSingleton(@interface, transientType);
-                                    break;
-                                default:
-                                    throw new ArgumentOutOfRangeException(nameof(lifeTime), lifeTime, null);
+                                switch (lifeTime)
+                                {
+                                    case IocLifeTime.Transient:
+                                        IocManager.Instance.RegisterTransient(transientTypeName, @interface, transientType);
+                                        break;
+                                    case IocLifeTime.Scoped:
+                                        IocManager.Instance.RegisterScoped(transientTypeName, @interface, transientType);
+                                        break;
+                                    case IocLifeTime.Singleton:
+                                        IocManager.Instance.RegisterSingleton(transientTypeName, @interface, transientType);
+                                        break;
+                                    default:
+                                        throw new ArgumentOutOfRangeException(nameof(lifeTime), lifeTime, null);
+                                }
+
+                                iocHelper.Register(@interface.Name, transientTypeName);
+                            }
+                            else
+                            {
+                                switch (lifeTime)
+                                {
+                                    case IocLifeTime.Transient:
+                                        IocManager.Instance.RegisterTransient(@interface, transientType);
+                                        break;
+                                    case IocLifeTime.Scoped:
+                                        IocManager.Instance.RegisterScoped(@interface, transientType);
+                                        break;
+                                    case IocLifeTime.Singleton:
+                                        IocManager.Instance.RegisterSingleton(@interface, transientType);
+                                        break;
+                                    default:
+                                        throw new ArgumentOutOfRangeException(nameof(lifeTime), lifeTime, null);
+                                }
+
+                                iocHelper.Register(@interface.Name, transientTypeName);
                             }
                         }
                     }
